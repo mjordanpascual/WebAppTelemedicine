@@ -1,106 +1,47 @@
+<script setup>
+import routes from "src/router/routes.js";
+
+import { computed } from "vue";
+
+const tabs = computed(() => {
+  const layout = routes.filter((item) => {
+    return item.path === "/auth";
+  });
+
+  const children = layout.map((item) => {
+    return item.children;
+  });
+
+  return children[0];
+});
+</script>
+
 <template>
-  <q-layout view="lHh Lpr lFf">
-    <q-header elevated>
+  <q-layout view="hHh lpR fFf">
+    <q-header elevated class="bg-primary text-white" height-hint="98">
       <q-toolbar>
-        <q-btn
-          flat
-          dense
-          round
-          icon="menu"
-          aria-label="Menu"
-          @click="toggleLeftDrawer"
-        />
-
-        <q-toolbar-title>Web Telemedicine App</q-toolbar-title>
-
-        <div>Ospar v{{ $q.version }}</div>
+        <q-toolbar-title>
+          <q-avatar>
+            <img
+              src="https://scontent.fmnl33-1.fna.fbcdn.net/v/t39.30808-6/298566118_110154615133234_6965500980030156126_n.jpg?_nc_cat=108&cb=99be929b-59f725be&ccb=1-7&_nc_sid=09cbfe&_nc_eui2=AeE-kYXJLgOJ_q0Lg7-sMacxAsFDHxZ-RPoCwUMfFn5E-h7RtXypQ7jcmDPPBdATQqi8fgvUmJ_RMLgEILlhFlDa&_nc_ohc=QvEjMnBsJF4AX8ESRss&_nc_ht=scontent.fmnl33-1.fna&oh=00_AfAws5hyhzVfqVoVzqQ4aXvRCPxfbzZHab-z4EBsYIqMyA&oe=64B01D68"
+            />
+          </q-avatar>
+          Web App Telemedicine
+        </q-toolbar-title>
       </q-toolbar>
-    </q-header>
 
-    <q-drawer v-model="leftDrawerOpen" show-if-above bordered>
-      <q-list>
-        <q-item-label header> Essential Links </q-item-label>
-
-        <EssentialLink
-          v-for="link in essentialLinks"
-          :key="link.title"
-          v-bind="link"
+      <q-tabs align="center">
+        <q-route-tab
+          v-for="tab in tabs"
+          :key="tab.path"
+          :to="'/auth/' + tab.path"
+          :label="tab.name"
         />
-      </q-list>
-    </q-drawer>
+      </q-tabs>
+    </q-header>
 
     <q-page-container>
       <router-view />
     </q-page-container>
   </q-layout>
 </template>
-
-<script>
-import { defineComponent, ref } from "vue";
-import EssentialLink from "components/EssentialLink.vue";
-
-const linksList = [
-  {
-    title: "Docs",
-    caption: "quasar.dev",
-    icon: "school",
-    link: "https://quasar.dev",
-  },
-  {
-    title: "Github",
-    caption: "github.com/quasarframework",
-    icon: "code",
-    link: "https://github.com/quasarframework",
-  },
-  {
-    title: "Discord Chat Channel",
-    caption: "chat.quasar.dev",
-    icon: "chat",
-    link: "https://chat.quasar.dev",
-  },
-  {
-    title: "Forum",
-    caption: "forum.quasar.dev",
-    icon: "record_voice_over",
-    link: "https://forum.quasar.dev",
-  },
-  {
-    title: "Twitter",
-    caption: "@quasarframework",
-    icon: "rss_feed",
-    link: "https://twitter.quasar.dev",
-  },
-  {
-    title: "Facebook",
-    caption: "@QuasarFramework",
-    icon: "public",
-    link: "https://facebook.quasar.dev",
-  },
-  {
-    title: "Quasar Awesome",
-    caption: "Community Quasar projects",
-    icon: "favorite",
-    link: "https://awesome.quasar.dev",
-  },
-];
-
-export default defineComponent({
-  name: "MainLayout",
-
-  components: {
-    EssentialLink,
-  },
-
-  setup() {
-    const leftDrawerOpen = ref(false);
-
-    return {
-      essentialLinks: linksList,
-      leftDrawerOpen,
-      toggleLeftDrawer() {
-        leftDrawerOpen.value = !leftDrawerOpen.value;
-      },
-    };
-  },
-});
-</script>

@@ -5,7 +5,7 @@
       src="~assets/quasar-logo-vertical.svg"
       style="width: 200px; height: 200px"
     /> -->
-    <h1>Kylj Jordan!</h1>
+    <h1>Telemedicine Programming!</h1>
   </q-page>
 </template>
 
