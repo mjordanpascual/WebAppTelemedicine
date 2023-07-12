@@ -3,6 +3,9 @@ import { ref, onMounted } from "vue";
 import ChatComponent from "components/ChatComponent.vue";
 import { getChats, createChat } from "models/chat";
 
+import { doc, onSnapshot } from "firebase/firestore";
+import { db } from "boot/firebaseConnection";
+
 const props = defineProps({
   patient: {
     type: Object,
