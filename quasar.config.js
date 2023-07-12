@@ -80,6 +80,10 @@ module.exports = configure(function (/* ctx */) {
         FIREBASE_MESSAGING_SENDER_ID: "107819251075",
         FIREBASE_APP_ID: "1:107819251075:web:9d7831eb64fad2546272b6",
 
+        // API_URL: "http://localhost:4000"
+        API_URL: "http://localhost:8000"
+
+
       },
       // rawDefine: {}
       // ignorePublicFolder: true,
@@ -106,16 +110,12 @@ module.exports = configure(function (/* ctx */) {
 
     // Full list of options: https://v2.quasar.dev/quasar-cli-vite/quasar-config-js#devServer
     devServer: {
-      // https: true
+      https: true,
       open: true, // opens browser window automatically
       proxy: {
         // proxy all requests starting with /api to jsonplaceholder
         '/api': {
-          target: 'http://some.api.target.com:7070',
-          changeOrigin: true,
-          pathRewrite: {
-            '^/api': ''
-          }
+          target: 'http://localhost:8000',
         }
       }
     },
