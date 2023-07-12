@@ -11,6 +11,7 @@
 const { configure } = require("quasar/wrappers");
 const path = require("path");
 
+
 module.exports = configure(function (/* ctx */) {
   return {
     eslint: {
@@ -28,7 +29,7 @@ module.exports = configure(function (/* ctx */) {
     // app boot file (/src/boot)
     // --> boot files are part of "main.js"
     // https://v2.quasar.dev/quasar-cli/boot-files
-    boot: ["i18n", "axios"],
+    boot: ["i18n", "axios", "firebaseConnection"],
 
     // https://v2.quasar.dev/quasar-cli-vite/quasar-config-js#css
     css: ["app.scss"],
@@ -70,6 +71,15 @@ module.exports = configure(function (/* ctx */) {
       // analyze: true,
       env: {
         APP_NAME: "Web Telemedicine App",
+
+        // FIREBASE CONFIGURATION CONNECTION STRING
+        FIREBASE_API_KEY: "AIzaSyDe1DWgOQ4JKaIwpbKdnz9T1ulzjHF07cU",
+        FIREBASE_AUTH_DOMAIN: "ghitap-telemed-app.firebaseapp.com",
+        FIREBASE_PROJECT_ID: "ghitap-telemed-app",
+        FIREBASE_STORAGE_BUCKET: "ghitap-telemed-app.appspot.com",
+        FIREBASE_MESSAGING_SENDER_ID: "107819251075",
+        FIREBASE_APP_ID: "1:107819251075:web:9d7831eb64fad2546272b6",
+
       },
       // rawDefine: {}
       // ignorePublicFolder: true,
