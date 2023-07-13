@@ -53,7 +53,11 @@ module.exports = configure(function (/* ctx */) {
       target: {
         browser: ["es2019", "edge88", "firefox78", "chrome87", "safari13.1"],
         node: "node16",
+
+
       },
+
+      env: require('dotenv').config().parsed,
 
       alias: {
         utils: path.resolve(__dirname, "./src/utils"),
@@ -69,22 +73,26 @@ module.exports = configure(function (/* ctx */) {
 
       publicPath: '/ospar/',
       // analyze: true,
-      env: {
-        APP_NAME: "Web Telemedicine App",
+      // env: {
+      //   APP_NAME: "Web Telemedicine App",
 
-        // FIREBASE CONFIGURATION CONNECTION STRING
-        FIREBASE_API_KEY: "AIzaSyDe1DWgOQ4JKaIwpbKdnz9T1ulzjHF07cU",
-        FIREBASE_AUTH_DOMAIN: "ghitap-telemed-app.firebaseapp.com",
-        FIREBASE_PROJECT_ID: "ghitap-telemed-app",
-        FIREBASE_STORAGE_BUCKET: "ghitap-telemed-app.appspot.com",
-        FIREBASE_MESSAGING_SENDER_ID: "107819251075",
-        FIREBASE_APP_ID: "1:107819251075:web:9d7831eb64fad2546272b6",
+      //   // // FIREBASE CONFIGURATION CONNECTION STRING
+      //   // FIREBASE_API_KEY: "AIzaSyDe1DWgOQ4JKaIwpbKdnz9T1ulzjHF07cU",
+      //   // FIREBASE_AUTH_DOMAIN: "ghitap-telemed-app.firebaseapp.com",
+      //   // FIREBASE_PROJECT_ID: "ghitap-telemed-app",
+      //   // FIREBASE_STORAGE_BUCKET: "ghitap-telemed-app.appspot.com",
+      //   // FIREBASE_MESSAGING_SENDER_ID: "107819251075",
+      //   // FIREBASE_APP_ID: "1:107819251075:web:9d7831eb64fad2546272b6",
 
-        // API_URL: "http://localhost:4000"
-        API_URL: "http://localhost:8000"
+      //   // API_URL: "http://localhost:4000"
+      //   // API_URL: "http://localhost:8000"
+      //   // API_URL: "https://localhost"
+      //   API_URL: "https://localhost"
 
 
-      },
+
+
+      // },
       // rawDefine: {}
       // ignorePublicFolder: true,
       // minify: false,
