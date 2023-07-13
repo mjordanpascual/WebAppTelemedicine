@@ -7,11 +7,11 @@ const chats = ref([]);
 const selected_id = ref(null);
 let unsubscribe = null;
 
-const user = computed(() => JSON.parse(localStorage.getItem("user")));
+const user = computed(() => JSON.parse(localStorage.getItem("user")))
 
 const loadMessages = async () => {
-  unsubscribe = listenChats(user.value.uid, (data) => {
-    chats.value = data;
+  unsubscribe = listenChats(user.value.uid, data => {
+    chats.value = data
   });
 };
 
@@ -50,7 +50,7 @@ const sendMessage = async (text) => {
     text,
     {
       id: user.value.uid,
-      name: "Dr. John Doe",
+      name: user.value.displayName || user.value.email,
     },
     {
       id: selected_id.value,

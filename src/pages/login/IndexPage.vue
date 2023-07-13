@@ -14,12 +14,12 @@ const onSubmit = () => {
   login(form.value)
     .then((user) => {
       localStorage.setItem("user", JSON.stringify(user));
-      router.push("/");
+      router.push('/');
     })
     .catch((error) => {
       $q.notify({
         color: "negative",
-        message: "Login failed.",
+        message: 'Login failed.',
       });
     })
     .finally(() => {

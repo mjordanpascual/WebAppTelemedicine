@@ -31,9 +31,8 @@ const selectItem = (item) => {
 
 onMounted(() => {
   fetchItems();
-  getServices().then(
-    (ser) =>
-      (services.value = ser.map((s) => ({ label: s.name, value: s.code })))
+  getServices().then((ser) =>
+    services.value = ser.map((s) => ({ label: s.name, value: s.code }))
   );
 });
 

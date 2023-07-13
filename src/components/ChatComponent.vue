@@ -14,7 +14,7 @@ const props = defineProps({
 
 const emit = defineEmits(["send"]);
 
-const user = computed(() => JSON.parse(localStorage.getItem("user")));
+const user = computed(() => JSON.parse(localStorage.getItem("user")))
 
 const message = ref("");
 

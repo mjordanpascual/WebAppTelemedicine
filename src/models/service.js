@@ -1,9 +1,7 @@
 import CustomInput from "components/CustomInput.vue";
 import { requiredValidator } from "src/utils/validators";
 import { createInputFields, createTableColumns } from "models/functions";
-
 import { api } from "boot/axios"
-
 
 const model = [
   {
@@ -29,21 +27,11 @@ export const createFields = (overrides = []) => createInputFields(model, overrid
 
 export const createColumns = () => createTableColumns(model);
 
-// export const getServices = () => {
-//   return new Promise((resolve, reject) => {
-//     setTimeout(function () {
-//       resolve(JSON.parse(localStorage.getItem("services") || "[]"));
-//     }, 1000);
-//   });
-// };
-
 export const getServices = async () => {
   const response = await api.get("/api/departments")
 
   return response.data
 };
-
-
 
 export const createService = (data) => {
   return new Promise((resolve) => {
@@ -92,4 +80,3 @@ export const deleteService = (code) => {
     }, 1000);
   });
 };
-

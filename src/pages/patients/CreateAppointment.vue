@@ -12,7 +12,7 @@ const props = defineProps({
   services: {
     type: Array,
     default: () => [],
-  },
+  }
 });
 
 const $q = useQuasar();

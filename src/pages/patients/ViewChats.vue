@@ -19,11 +19,11 @@ const openChat = () => {
 const messages = ref([]);
 let unsubscribe = null;
 
-const user = computed(() => JSON.parse(localStorage.getItem("user")));
+const user = computed(() => JSON.parse(localStorage.getItem("user")))
 
 const loadMessages = async () => {
-  unsubscribe = listenChats(props.patient.id, (data) => {
-    messages.value = data;
+  unsubscribe = listenChats(props.patient.user_id, data => {
+    messages.value = data
   });
 };
 
@@ -36,14 +36,15 @@ onUnmounted(() => {
 });
 
 const sendMessage = async (text) => {
+  console.log(user.value)
   await createChat(
     text,
     {
       id: user.value.uid,
-      name: "Dr. John Doe",
+      name: user.value.email,
     },
     {
-      id: props.patient.id,
+      id: props.patient.user_id,
       name: `${props.patient.first_name} ${props.patient.last_name}`,
     }
   );
@@ -55,11 +56,7 @@ const sendMessage = async (text) => {
 
   <q-dialog v-model="dialog">
     <q-card flat bordered style="width: 500px" class="q-mt-xl">
-      <ChatComponent
-        :name="`${patient.first_name} ${patient.last_name}`"
-        :messages="messages"
-        @send="sendMessage"
-      />
+      <ChatComponent :name="`${patient.first_name} ${patient.last_name}`" :messages="messages" @send="sendMessage" />
     </q-card>
   </q-dialog>
 </template>

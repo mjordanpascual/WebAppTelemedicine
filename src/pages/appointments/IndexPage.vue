@@ -10,7 +10,7 @@ const appointments = ref([]);
 const columns = computed(() => createColumns());
 const loading = ref(false);
 
-const hospital = computed(() => JSON.parse(localStorage.getItem("hospital")));
+const hospital = computed(() => JSON.parse(localStorage.getItem('hospital')))
 
 const fetchItems = () => {
   loading.value = true;
@@ -33,21 +33,19 @@ const generateEncounter = (appointment) => {
       hospital_number: appointment.patient.hospital_number,
       department_code: appointment.service.value,
       type: appointment.type,
-    })
-      .then(() => {
-        $q.notify({
-          message: "Encounter generated successfully",
-          color: "positive",
-        });
-        $q.loading.hide();
-      })
-      .catch(() => {
-        $q.notify({
-          message: "Failed to generate encounter",
-          color: "negative",
-        });
-        $q.loading.hide();
+    }).then(() => {
+      $q.notify({
+        message: "Encounter generated successfully",
+        color: "positive",
       });
+      $q.loading.hide();
+    }).catch(() => {
+      $q.notify({
+        message: "Failed to generate encounter",
+        color: "negative",
+      });
+      $q.loading.hide();
+    });
   });
 };
 

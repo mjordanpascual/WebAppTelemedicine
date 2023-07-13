@@ -9,7 +9,7 @@ import {
 import { db } from 'boot/firebaseConnection'
 
 export const listenChats = (user_id, callback) => {
-  const q = query(collection(db, "chats"),
+  const q = query(collection(db, "chats"),  
     or(where('sender_id', '==', user_id),
       where('receiver_id', '==', user_id)
     )

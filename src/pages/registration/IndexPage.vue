@@ -3,27 +3,27 @@ import { useRouter } from "vue-router";
 import { computed, ref } from "vue";
 import { createFields, createPatient } from "models/patient";
 import FormBuilder from "components/FormBuilder.vue";
-import CustomInput from "components/CustomInput.vue";
-import { register, update } from "src/services/auth";
+import CustomInput from 'components/CustomInput.vue'
+import { register, update } from "src/services/auth"
 import { useQuasar } from "quasar";
 
 const $q = useQuasar();
 
 const router = useRouter();
 
-const fields = computed(() => [
+const fields = computed(() => ([
   ...createFields(),
   {
     component: CustomInput,
-    model: "password",
+    model: 'password',
     attrs: {
-      label: "Password",
-      type: "password",
+      label: 'Password',
+      type: 'password'
     },
-    col: 6,
-    guestOnly: true,
-  },
-]);
+      col: 6,
+      guestOnly: true
+  }
+]));
 const form = ref({});
 
 const onSubmit = async () => {
@@ -32,19 +32,19 @@ const onSubmit = async () => {
     const user = await register({
       email: form.value.email,
       password: form.value.password,
-      displayName: form.value.first_name + " " + form.value.last_name,
+      displayName: form.value.first_name + ' ' + form.value.last_name,
     });
 
     localStorage.setItem("user", JSON.stringify(user));
 
-    const { password, ...patientData } = form.value;
+    const {password, ...patientData} = form.value;
 
     const patient = createPatient({
       ...patientData,
       user_id: user.uid,
     });
 
-    router.push("/");
+    router.push('/');
   } catch (error) {
     $q.notify({
       color: "negative",

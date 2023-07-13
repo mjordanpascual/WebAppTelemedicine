@@ -13,12 +13,9 @@ const tabs = computed(() =>
   routes
     .find((r) => r.path === "/auth")
     ?.children?.filter((r) => r.meta && r.meta.label)
-    .filter((r) => {
-      if (
-        r.meta.middleware &&
-        r.meta.middleware.map((m) => m.name).includes("hospital")
-      ) {
-        return JSON.parse(localStorage.getItem("hospital"));
+    .filter(r => {
+      if (r.meta.middleware && r.meta.middleware.map(m => m.name).includes("hospital")) {
+        return JSON.parse(localStorage.getItem("hospital"))
       }
       return true;
     })
@@ -26,7 +23,7 @@ const tabs = computed(() =>
       label: r.meta.label,
       icon: r.meta.icon,
       to: r.path,
-      middleware: r.meta.middleware ? r.meta.middleware.map((m) => m.name) : [],
+      middleware: r.meta.middleware ? r.meta.middleware.map(m => m.name) : [],
     }))
 );
 

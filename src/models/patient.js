@@ -202,15 +202,15 @@ export const deletePatient = async (id) => {
 export const searchPatient = async (lastName = null, firstName = null, middleName = null) => {
   const query = {}
 
-  if (lastName && lastName.length > 0) {
+  if(lastName && lastName.length > 0) {
     query.patlast = lastName
   }
 
-  if (firstName && firstName.length > 0) {
+  if(firstName && firstName.length > 0) {
     query.patfirst = firstName
   }
 
-  if (middleName && middleName.length > 0) {
+  if(middleName && middleName.length > 0) {
     query.patmiddle = middleName
   }
 
