@@ -1,4 +1,3 @@
-// firebase.js
 import { initializeApp } from 'firebase/app'
 import { getAuth } from "firebase/auth"
 import { getFirestore } from "firebase/firestore"
@@ -18,6 +17,5 @@ const initialize = (config) => {
     firebaseApp, auth, db
   }
 }
-
 
 export default initialize

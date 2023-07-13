@@ -1,5 +1,5 @@
 <script setup>
-import { ref, onMounted, onUnmounted } from "vue";
+import { ref, onMounted, onUnmounted, computed } from "vue";
 import ChatComponent from "components/ChatComponent.vue";
 import { listenChats, createChat } from "models/chat";
 
@@ -19,6 +19,8 @@ const openChat = () => {
 const messages = ref([]);
 let unsubscribe = null;
 
+const user = computed(() => JSON.parse(localStorage.getItem("user")));
+
 const loadMessages = async () => {
   unsubscribe = listenChats(props.patient.id, (data) => {
     messages.value = data;
@@ -37,7 +39,7 @@ const sendMessage = async (text) => {
   await createChat(
     text,
     {
-      id: 1234,
+      id: user.value.uid,
       name: "Dr. John Doe",
     },
     {
